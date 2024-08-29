@@ -23,7 +23,7 @@ public class Game {
                 System.out.print("\uD83E\uDEC5 ");
             }
             System.out.println("");
-            String result = String.format("Hurray \uD83E\uDD73, %s you nailed it \uD83E\uDD29 !: ", player);
+            String result = String.format("Hurray \uD83E\uDD73, %s you nailed it \uD83E\uDD29 !: ", player.getName());
             System.out.println(result);
 
         } else {
