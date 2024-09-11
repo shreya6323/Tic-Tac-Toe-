@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Board {
-    private List<Integer> intList ;
+    private List<Integer> emptyPositions ;
     private static final String RED = "\u001B[31m";
     private static final String GREEN = "\u001B[32m";
     private static final String WHITE = "\u001B[0m";
@@ -15,31 +15,35 @@ public class Board {
         return board;
     }
 
-    public List<Integer> getIntList() {
-        return intList;
+    private void print(String text)
+    {
+        System.out.print(text);
+    }
+    public List<Integer> getEmptyPositions() {
+        return emptyPositions;
     }
 
 
     public Board()
     {
          board = new char[3][3];
-          intList = new ArrayList<>();
+          emptyPositions = new ArrayList<>();
     }
     public  void initializeBoard() {
-        int a = 1;
+        int positionCount = 1;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                board[i][j] = (char) (a + 48);
-                a++;
+                board[i][j] = (char) (positionCount + 48);
+                positionCount++;
             }
         }
         prepareComputerMoves();
     }
     public void prepareComputerMoves()  {
 
-        intList.clear();
-        intList.addAll(Arrays.asList(1, 2, 4, 3, 5, 6, 7, 8, 9));
-        Collections.shuffle(intList);
+        emptyPositions.clear();
+        emptyPositions.addAll(Arrays.asList(1, 2, 4, 3, 5, 6, 7, 8, 9));
+        Collections.shuffle(emptyPositions);
     }
 
     public void showBoard() {
@@ -47,22 +51,22 @@ public class Board {
             for (int j = 0; j < board[i].length; j++) {
                 if (j < board[i].length - 1) {
                     if (board[i][j] == 'X') {
-                        System.out.print(RED + board[i][j] + WHITE);
+                        print(RED + board[i][j] + WHITE);
 
-                        System.out.print(" | ");
+                        print(" | ");
                     } else if (board[i][j] == 'O') {
-                        System.out.print(GREEN + board[i][j] + WHITE);
-                        System.out.print(" | ");
+                        print(GREEN + board[i][j] + WHITE);
+                        print(" | ");
                     } else {
-                        System.out.print(board[i][j] + " | ");
+                        print(board[i][j] + " | ");
                     }
                 } else {
                     if (board[i][j] == 'X') {
-                        System.out.print(RED + board[i][j] + WHITE);
+                        print(RED + board[i][j] + WHITE);
                     } else if (board[i][j] == 'O') {
-                        System.out.print(GREEN + board[i][j] + WHITE);
+                        print(GREEN + board[i][j] + WHITE);
                     } else {
-                        System.out.print(board[i][j]);
+                        print(String.valueOf(board[i][j]));
                     }
                 }
             }
