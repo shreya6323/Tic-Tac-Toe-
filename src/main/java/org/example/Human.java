@@ -1,13 +1,6 @@
 package org.example;
 
+import lombok.NoArgsConstructor;
 
-
-public class Human extends Player{
-
-    public Human()
-{
-
-}
-
-
-}
+@NoArgsConstructor
+public class Human extends Player {}
