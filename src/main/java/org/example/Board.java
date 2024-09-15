@@ -9,6 +9,7 @@ public class Board {
     private static final String RED = "\u001B[31m";
     private static final String GREEN = "\u001B[32m";
     private static final String WHITE = "\u001B[0m";
+    private static final String LINE_ELEMENT = "-";
     private char[][] board ;
 
     public char[][] getBoard() {
@@ -68,7 +69,7 @@ public class Board {
             }
             System.out.println();
             if (i < board.length - 1)
-                System.out.println("----------");
+                System.out.println(LINE_ELEMENT.repeat(10));
         }
     }
 
