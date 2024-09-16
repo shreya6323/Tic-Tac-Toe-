@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+
 import static java.lang.Math.pow;
+
 
 @Setter
 @Getter
@@ -71,8 +73,10 @@ public class Board {
                 if (j < board.get(i).size() - 1) {
                   print(SEPARATOR);
                 }
+
                 break;
               }
+
 
             case O_SYMBOL_VALUE:
               {
