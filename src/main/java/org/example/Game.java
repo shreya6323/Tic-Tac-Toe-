@@ -17,6 +17,9 @@ public class Game {
   private Player player;
   private Player cyborg;
   private Scanner sc;
+  private int level;
+  private int easy_level = 1;
+  private int hard_level = 2;
 
   public Game() {
     this.boardobj = new Board();
@@ -95,9 +98,36 @@ public class Game {
     setPlayerSymbol();
     cyborg.setSymbol((player.getSymbol() == X_SYMBOL) ? O_SYMBOL : X_SYMBOL);
     askBoardSize();
+    askDifficltyLevel();
     boardobj.initializeBoard();
     boardobj.showBoard();
     startPlay();
+  }
+
+  private void askDifficltyLevel() {
+    level = -1;
+   do {
+      try {
+        String result = "%s enter your difficulty level, %d for easy & %d for hard : ".formatted(player.getName(),easy_level,hard_level);
+        println(result);
+        level = this.sc.nextInt();
+        if (level != easy_level && level != hard_level) {
+            level = -1;
+            throw new OutOfRange(" \uD83D\uDE4F Plzz enter %d or %d !".formatted(easy_level,hard_level));
+        }
+
+      } catch (InputMismatchException e) {
+        println(" \uD83D\uDE4F Plzz Enter only numbers !!");
+
+      } catch (OutOfRange e) {
+        println(e.getMessage());
+
+      } finally {
+        sc.nextLine();
+      }
+
+    } while (level == -1);
+
   }
 
   private void startPlay() {
@@ -146,8 +176,14 @@ public class Game {
   }
 
   private int getComputerMove() {
-    return boardobj.getEmptyPositions().getFirst();
+    Cyborg c = (Cyborg) cyborg;
+    if(level == 1)
+    {
+        return c.cyborgMove(new EasyStrategy(boardobj));
+    }
+        return c.cyborgMove(new HardStrategy((boardobj)));
   }
+
   private int maxLimit()
   {
     return (int)pow(boardobj.getBoardSize(),2);
