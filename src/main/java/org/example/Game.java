@@ -11,6 +11,8 @@ public class Game {
   public static final int X_SYMBOL_VALUE = -1;
   public static final int O_SYMBOL_VALUE = -2;
   public static final char O_SYMBOL = 'O';
+  private static final int easy_level = 1;
+  private static final int hard_level = 2;
   public static final String human = "\uD83E\uDEC5 ";
   public static final String robot = "\uD83E\uDD16 ";
   private Board boardobj;
@@ -18,8 +20,7 @@ public class Game {
   private Player cyborg;
   private Scanner sc;
   private int level;
-  private int easy_level = 1;
-  private int hard_level = 2;
+
 
   public Game() {
     this.boardobj = new Board();
